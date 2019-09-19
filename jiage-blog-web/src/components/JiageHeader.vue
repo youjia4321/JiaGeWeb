@@ -17,16 +17,36 @@
             <Icon type="md-arrow-dropdown" />
           </div>
           <DropdownMenu slot="list">
-            <DropdownItem name="attention"><Icon type="ios-pricetags-outline" />&nbsp;我的关注</DropdownItem>
-            <DropdownItem name="collection"><Icon type="ios-bookmark-outline" />&nbsp;我的收藏</DropdownItem>
-            <DropdownItem name="center"><Icon type="ios-person-outline" />&nbsp;个人中心</DropdownItem>
-            <DropdownItem name="setting"><Icon type="ios-settings-outline" />&nbsp;账号设置</DropdownItem>
-            <DropdownItem divided name="blog"><Icon type="ios-paper-outline" />&nbsp;我的博客</DropdownItem>
-            <DropdownItem name="manage"><Icon type="ios-options-outline" />&nbsp;管理博客</DropdownItem>
-            <DropdownItem name="download"><Icon type="ios-download-outline" />&nbsp;我的下载</DropdownItem>
-            <DropdownItem name="bbs"><Icon type="ios-mic-outline" />&nbsp;我的论坛</DropdownItem>
-            <DropdownItem divided name="help"><Icon type="ios-help-circle-outline" />&nbsp;帮助</DropdownItem>
-            <DropdownItem name="logout"><Icon type="ios-log-out" />&nbsp;退出</DropdownItem>
+            <DropdownItem name="attention">
+              <Icon type="ios-pricetags-outline" />&nbsp;我的关注
+            </DropdownItem>
+            <DropdownItem name="collection">
+              <Icon type="ios-bookmark-outline" />&nbsp;我的收藏
+            </DropdownItem>
+            <DropdownItem name="center">
+              <Icon type="ios-person-outline" />&nbsp;个人中心
+            </DropdownItem>
+            <DropdownItem name="setting">
+              <Icon type="ios-settings-outline" />&nbsp;账号设置
+            </DropdownItem>
+            <DropdownItem divided name="blog">
+              <Icon type="ios-paper-outline" />&nbsp;我的博客
+            </DropdownItem>
+            <DropdownItem name="manage">
+              <Icon type="ios-options-outline" />&nbsp;管理博客
+            </DropdownItem>
+            <DropdownItem name="download">
+              <Icon type="ios-download-outline" />&nbsp;我的下载
+            </DropdownItem>
+            <DropdownItem name="bbs">
+              <Icon type="ios-mic-outline" />&nbsp;我的论坛
+            </DropdownItem>
+            <DropdownItem divided name="help">
+              <Icon type="ios-help-circle-outline" />&nbsp;帮助
+            </DropdownItem>
+            <DropdownItem name="logout">
+              <Icon type="ios-log-out" />&nbsp;退出
+            </DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </div>
@@ -148,5 +168,10 @@ export default {
 }
 .ivu-avatar > img {
   vertical-align: initial;
+}
+.ivu-dropdown-menu {
+  text-align: center;
+  min-width: 110px;
+  letter-spacing: 1px;
 }
 </style>
