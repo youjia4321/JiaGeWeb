@@ -2,18 +2,18 @@
   <div id="app">
     <router-view name="header"></router-view>
     <router-view name="default"></router-view>
+    <BackTop></BackTop>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'app',
-}
+  name: "app"
+};
 </script>
 
 <style>
-.ivu-breadcrumb a{
+.ivu-breadcrumb a {
   color: #fff !important;
 }
 </style>

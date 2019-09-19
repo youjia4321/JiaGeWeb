@@ -2,46 +2,43 @@
   <div class="main-body">
     <div class="form">
       <Icon type="logo-octocat" size="60" />
-      <h1>Sign in to JiaGE</h1>
+      <h1>Create your account</h1>
     </div>
     <div class="login">
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="user">
-          <div class="prompt">Username or email address</div>
-          <i-Input type="text" v-model="formInline.user" placeholder="Username or Email" clearable>
+          <div class="prompt">Username</div>
+          <i-Input type="text" v-model="formInline.user" placeholder="Username" clearable>
             <Icon type="ios-person" slot="prepend" size="16"></Icon>
           </i-Input>
         </FormItem>
+        <FormItem prop="email">
+          <div class="prompt">Email address</div>
+          <i-Input type="text" v-model="formInline.email" placeholder="Email address" clearable>
+            <Icon type="ios-mail" slot="prepend" size="16"></Icon>
+          </i-Input>
+        </FormItem>
         <FormItem prop="password">
-          <div class="prompt" style="float: left">Password</div>
-          <div class="prompt" style="float: right">
-            <a>Forgot password?</a>
-          </div>
-          <i-Input
-            type="password"
-            v-model="formInline.password"
-            placeholder="Password"
-            clearable
-            @keyup.enter.native="handleSubmit('formInline')"
-          >
+          <div class="prompt">Password</div>
+          <i-Input type="password" v-model="formInline.password" placeholder="Password" clearable>
             <Icon type="ios-lock" slot="prepend" size="16"></Icon>
           </i-Input>
         </FormItem>
         <FormItem>
           <Button
             class="btn"
-            type="success"
+            type="primary"
             size="large"
             long
             :loading="modal_loading"
             @click="handleSubmit('formInline')"
-          >Sign in</Button>
+          >Create new</Button>
         </FormItem>
       </Form>
     </div>
     <p class="register-link">
-      New to JiaGE?
-      <router-link to="/account/register">Create an account.</router-link>
+      Have a JiaGE account?
+      <router-link to="/account/login">Sign in.</router-link>
     </p>
   </div>
 </template>
@@ -52,6 +49,7 @@ export default {
       modal_loading: false,
       formInline: {
         user: "",
+        email: "",
         password: ""
       },
       ruleInline: {
@@ -59,6 +57,13 @@ export default {
           {
             required: true,
             message: "Please enter the user name",
+            trigger: "blur"
+          }
+        ],
+        email: [
+          {
+            required: true,
+            message: "Please enter the email",
             trigger: "blur"
           }
         ],
@@ -73,42 +78,16 @@ export default {
     };
   },
   methods: {
-    // post请求需要获取csrftoken
-    getCookie(name) {
-      var value = "; " + document.cookie;
-      var parts = value.split("; " + name + "=");
-      if (parts.length === 2)
-        return parts
-          .pop()
-          .split(";")
-          .shift();
-    },
-    // 用户登录
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           this.modal_loading = true;
-          var username = this.formInline.user;
-          var password = this.formInline.password;
-          this.$http
-            .userLogin(username, password, this.getCookie("csrftoken"))
-            .then(resp => {
-              if (resp.result.code === "200") {
-                var obj = {
-                  username: this.formInline.user,
-                  password: this.formInline.password,
-                  avatar: resp.result.avatar
-                };
-                sessionStorage.setItem("user", JSON.stringify(obj));
-
-                this.$router.push({
-                  path: "/index"
-                });
-              } else {
-                this.$Message.error(resp.result.msg);
-              }
-              this.modal_loading = false;
+          setTimeout(() => {
+            this.modal_loading = false;
+            this.$router.push({
+              path: "/account/login"
             });
+          }, 2000);
         }
       });
     }
@@ -133,7 +112,7 @@ export default {
   width: 308px;
   margin: 0 auto;
   border: 1px solid #d8dee2;
-  height: 257px;
+  height: 337px;
   border-radius: 5px;
   padding: 20px;
   font-size: 14px;

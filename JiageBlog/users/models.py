@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 class UserProfile(AbstractUser):
-    portrait = models.ImageField(upload_to="person" , default='person/default.jpg', max_length=100, verbose_name='用户头像')
+    portrait = models.ImageField(upload_to="person", default='person/default.jpg', max_length=100, verbose_name='用户头像')
     gender = models.CharField(max_length=6, choices=(('男', '男'), ('女', '女')), default='female', verbose_name='性别')
     mobile = models.CharField(max_length=11, null=True, blank=True, verbose_name='手机号')
 

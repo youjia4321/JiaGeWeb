@@ -1,8 +1,14 @@
 module.exports = {
+    assetsDir: 'static',
+    chainWebpack: config => {
+        config
+            .entry('index')
+            .add('babel-polyfill')
+    },
     pages: {
         index: {
             // page 的入口
-            entry: 'src/index/main.js',
+            entry: 'src/main.js',
             // 模板来源
             template: 'public/index.html',
             // 在 dist/index.html 的输出
