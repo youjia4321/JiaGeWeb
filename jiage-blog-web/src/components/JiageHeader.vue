@@ -3,50 +3,83 @@
     <Menu mode="horizontal" theme="dark">
       <div class="layout-logo">JiaGE</div>
       <div class="layout-operation">
-        <MenuItem name="1">
+        <MenuItem name="1" to="/add/blog">
           <Icon type="md-create" />写博客
         </MenuItem>
-        <MenuItem name="2">
+        <MenuItem v-if="auth" name="2" to="/account/login">
           <Icon type="md-mail" />消息
+        </MenuItem>
+        <MenuItem v-else name="2">
+          <Dropdown>
+            <Icon type="md-mail" />&nbsp;&nbsp;消息
+            <DropdownMenu slot="list">
+              <DropdownItem>评论</DropdownItem>
+              <DropdownItem>关注</DropdownItem>
+              <DropdownItem>点赞</DropdownItem>
+              <DropdownItem>回答</DropdownItem>
+              <DropdownItem>系统通知</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </MenuItem>
         <MenuItem v-if="auth" name="3" to="/account/login">登录</MenuItem>
         <MenuItem v-if="auth" name="4" to="/account/register">注册</MenuItem>
-        <Dropdown v-else @on-click="handleOpertion">
+        <Dropdown v-else>
           <div class="avatar" style="color: #fff; cursor: pointer">
             <Avatar :src="'http://192.168.1.65:8000/media/'+backAvatar" size="small" />
+            <!-- <Avatar :src="defaultAvatar" size="small" /> -->
             <Icon type="md-arrow-dropdown" />
           </div>
           <DropdownMenu slot="list">
-            <DropdownItem name="attention">
-              <Icon type="ios-pricetags-outline" />&nbsp;我的关注
-            </DropdownItem>
-            <DropdownItem name="collection">
-              <Icon type="ios-bookmark-outline" />&nbsp;我的收藏
-            </DropdownItem>
-            <DropdownItem name="center">
-              <Icon type="ios-person-outline" />&nbsp;个人中心
-            </DropdownItem>
-            <DropdownItem name="setting">
-              <Icon type="ios-settings-outline" />&nbsp;账号设置
-            </DropdownItem>
-            <DropdownItem divided name="blog">
-              <Icon type="ios-paper-outline" />&nbsp;我的博客
-            </DropdownItem>
-            <DropdownItem name="manage">
-              <Icon type="ios-options-outline" />&nbsp;管理博客
-            </DropdownItem>
-            <DropdownItem name="download">
-              <Icon type="ios-download-outline" />&nbsp;我的下载
-            </DropdownItem>
-            <DropdownItem name="bbs">
-              <Icon type="ios-mic-outline" />&nbsp;我的论坛
-            </DropdownItem>
-            <DropdownItem divided name="help">
-              <Icon type="ios-help-circle-outline" />&nbsp;帮助
-            </DropdownItem>
-            <DropdownItem name="logout">
-              <Icon type="ios-log-out" />&nbsp;退出
-            </DropdownItem>
+            <router-link to="/account/index">
+              <DropdownItem name="attention">
+                <Icon type="ios-pricetags-outline" />&nbsp;我的关注
+              </DropdownItem>
+            </router-link>
+            <router-link to="/account/index">
+              <DropdownItem name="collection">
+                <Icon type="ios-bookmark-outline" />&nbsp;我的收藏
+              </DropdownItem>
+            </router-link>
+            <router-link to="/account/index">
+              <DropdownItem name="profile">
+                <Icon type="ios-person-outline" />&nbsp;个人中心
+              </DropdownItem>
+            </router-link>
+            <router-link to="/account/index">
+              <DropdownItem name="setting">
+                <Icon type="ios-settings-outline" />&nbsp;账号设置
+              </DropdownItem>
+            </router-link>
+            <router-link to="/account/index">
+              <DropdownItem divided name="blog">
+                <Icon type="ios-paper-outline" />&nbsp;我的博客
+              </DropdownItem>
+            </router-link>
+            <router-link to="/account/index">
+              <DropdownItem name="manage">
+                <Icon type="ios-options-outline" />&nbsp;管理博客
+              </DropdownItem>
+            </router-link>
+            <router-link to="/account/index">
+              <DropdownItem name="download">
+                <Icon type="ios-download-outline" />&nbsp;我的下载
+              </DropdownItem>
+            </router-link>
+            <router-link to="/account/index">
+              <DropdownItem name="bbs">
+                <Icon type="ios-mic-outline" />&nbsp;我的论坛
+              </DropdownItem>
+            </router-link>
+            <router-link to="/account/index">
+              <DropdownItem divided name="help">
+                <Icon type="ios-help-circle-outline" />&nbsp;帮助
+              </DropdownItem>
+            </router-link>
+            <router-link to="/account/login">
+              <DropdownItem name="logout">
+                <Icon type="ios-log-out" />&nbsp;退出
+              </DropdownItem>
+            </router-link>
           </DropdownMenu>
         </Dropdown>
       </div>
@@ -93,14 +126,6 @@ export default {
         this.user = user.username;
         this.backAvatar = user.avatar;
         this.auth = false;
-      }
-    },
-    handleOpertion(name) {
-      if (name === "logout") {
-        sessionStorage.removeItem("user");
-        this.$router.push({
-          path: "/account/login"
-        });
       }
     }
   }
@@ -170,8 +195,11 @@ export default {
   vertical-align: initial;
 }
 .ivu-dropdown-menu {
-  text-align: center;
-  min-width: 110px;
+  min-width: 80px;
   letter-spacing: 1px;
+}
+.ivu-dropdown-menu a {
+  color: #515a6e;
+  text-decoration: none;
 }
 </style>
