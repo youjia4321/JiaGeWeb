@@ -2,6 +2,7 @@
   <div id="app">
     <router-view name="header"></router-view>
     <router-view name="default"></router-view>
+    <router-view name="footer"></router-view>
     <BackTop></BackTop>
   </div>
 </template>
