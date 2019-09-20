@@ -19,6 +19,9 @@ Vue.config.productionTip = false
 // 全局导航守卫
 router.beforeEach((to, from, next) => {
   let user = JSON.parse(sessionStorage.getItem("user"));
+  if (to.path === '/account/login') {
+    sessionStorage.removeItem("user");
+  }
   if (user && to.path !== '/index') {
     next({ path: '/index' })
   }

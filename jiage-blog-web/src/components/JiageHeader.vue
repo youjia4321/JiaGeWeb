@@ -3,8 +3,10 @@
     <Menu mode="horizontal" theme="dark">
       <div class="layout-logo">JiaGE</div>
       <div class="layout-operation">
-        <MenuItem name="1" to="/add/blog">
-          <Icon type="md-create" />写博客
+        <MenuItem name="1">
+          <router-link to="/add/blog">
+            <Icon type="md-create" />写博客
+          </router-link>
         </MenuItem>
         <MenuItem v-if="auth" name="2" to="/account/login">
           <Icon type="md-mail" />消息
@@ -133,7 +135,13 @@ export default {
 </script>
 
 <style scoped>
-.ivu-menu-item {
+.ivu-menu-item a {
+  color: #babcbd;
+  text-decoration: none;
+}
+.ivu-menu-item a:hover,
+.ivu-menu-item a:focus {
+  color: #fff;
   text-decoration: none;
 }
 .ivu-layout-header {
