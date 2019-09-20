@@ -1,8 +1,8 @@
 import Header from "@/components/JiageHeader"
 import Footer from "@/components/JiageFooter"
-const Index = () => import("@/views/JiageIndex")
-const Login = () => import("@/views/JiageLogin")
-const Register = () => import("@/views/JiageRegister")
+const Index = () => import("@/views/index/JiageIndex")
+const Login = () => import("@/views/login/JiageLogin")
+const Register = () => import("@/views/register/JiageRegister")
 
 const Profile = () => import("@/views/profile/JiageProfile")
 const addBlog = () => import("@/views/addblog/JiageAddBlog")
@@ -14,7 +14,7 @@ export default [
     },
     {
         path: '/index',
-        name: 'index',
+        name: 'Index',
         components: {
             default: Index,
             header: Header,
@@ -23,34 +23,37 @@ export default [
     },
     {
         path: '/account/login',
-        name: "login",
+        name: "Login",
         components: {
             default: Login
         }
     },
     {
         path: '/account/register',
-        name: "register",
+        name: "Register",
         components: {
             default: Register
         }
     },
     {
-        path: '/account/index',
-        name: 'profile',
+        path: '/account/profile',
+        name: 'Profile',
         components: {
             default: Profile,
             header: Header,
-            footer: Footer
-        }
+            footer: Footer,
+
+        },
+        meta: { requireAuth: true }
     },
     {
-        path: "/add/blog",
-        name: "add",
+        path: "/account/add/blog",
+        name: "Addblog",
         components: {
             default: addBlog,
             header: Header,
             footer: Footer
-        }
+        },
+        meta: { requireAuth: true }
     }
 ]

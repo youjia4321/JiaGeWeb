@@ -4,11 +4,11 @@
       <div class="layout-logo">JiaGE</div>
       <div class="layout-operation">
         <MenuItem name="1">
-          <router-link to="/add/blog">
+          <router-link to="/account/add/blog">
             <Icon type="md-create" />写博客
           </router-link>
         </MenuItem>
-        <MenuItem v-if="auth" name="2" to="/account/login">
+        <MenuItem v-if="auth" name="2">
           <Icon type="md-mail" />消息
         </MenuItem>
         <MenuItem v-else name="2">
@@ -32,47 +32,47 @@
             <Icon type="md-arrow-dropdown" />
           </div>
           <DropdownMenu slot="list">
-            <router-link to="/account/index">
+            <router-link to="/account/profile">
               <DropdownItem name="attention">
                 <Icon type="ios-pricetags-outline" />&nbsp;我的关注
               </DropdownItem>
             </router-link>
-            <router-link to="/account/index">
+            <router-link to="/account/profile">
               <DropdownItem name="collection">
                 <Icon type="ios-bookmark-outline" />&nbsp;我的收藏
               </DropdownItem>
             </router-link>
-            <router-link to="/account/index">
+            <router-link to="/account/profile">
               <DropdownItem name="profile">
                 <Icon type="ios-person-outline" />&nbsp;个人中心
               </DropdownItem>
             </router-link>
-            <router-link to="/account/index">
+            <router-link to="/account/profile">
               <DropdownItem name="setting">
                 <Icon type="ios-settings-outline" />&nbsp;账号设置
               </DropdownItem>
             </router-link>
-            <router-link to="/account/index">
+            <router-link to="/account/profile">
               <DropdownItem divided name="blog">
                 <Icon type="ios-paper-outline" />&nbsp;我的博客
               </DropdownItem>
             </router-link>
-            <router-link to="/account/index">
+            <router-link to="/account/profile">
               <DropdownItem name="manage">
                 <Icon type="ios-options-outline" />&nbsp;管理博客
               </DropdownItem>
             </router-link>
-            <router-link to="/account/index">
+            <router-link to="/account/profile">
               <DropdownItem name="download">
                 <Icon type="ios-download-outline" />&nbsp;我的下载
               </DropdownItem>
             </router-link>
-            <router-link to="/account/index">
+            <router-link to="/account/profile">
               <DropdownItem name="bbs">
                 <Icon type="ios-mic-outline" />&nbsp;我的论坛
               </DropdownItem>
             </router-link>
-            <router-link to="/account/index">
+            <router-link to="/account/profile">
               <DropdownItem divided name="help">
                 <Icon type="ios-help-circle-outline" />&nbsp;帮助
               </DropdownItem>
@@ -135,7 +135,8 @@ export default {
 </script>
 
 <style scoped>
-.ivu-menu-item a {
+.ivu-menu-item a,
+.ivu-menu-item{
   color: #babcbd;
   text-decoration: none;
 }

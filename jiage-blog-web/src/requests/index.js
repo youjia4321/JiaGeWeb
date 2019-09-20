@@ -34,3 +34,16 @@ export const userLogin = (username, password, headers) => {
         }
     })
 }
+
+// 用户注册
+export const userRegister = (email, username, password, headers) => {
+    return ajax({
+        url: '/api/userRegister',
+        method: 'post',
+        responseType: 'json',
+        data: qs.stringify({ 'email': email, 'username': username, 'password': password }),
+        headers: {
+            'X-CSRFToken': headers
+        }
+    })
+}

@@ -78,16 +78,42 @@ export default {
     };
   },
   methods: {
+    // post请求需要获取csrftoken
+    getCookie(name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length === 2)
+        return parts
+          .pop()
+          .split(";")
+          .shift();
+    },
+    // 用户登录
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           this.modal_loading = true;
-          setTimeout(() => {
-            this.modal_loading = false;
-            this.$router.push({
-              path: "/account/login"
+          var username = this.formInline.user;
+          var password = this.formInline.password;
+          var email = this.formInline.email;
+          this.$http
+            .userRegister(
+              email,
+              username,
+              password,
+              this.getCookie("csrftoken")
+            )
+            .then(resp => {
+              if (resp.result.code === "200") {
+                this.$router.push({
+                  path: "/account/login"
+                });
+                this.$Message.success(resp.result.msg);
+              } else {
+                this.$Message.error(resp.result.msg);
+              }
+              this.modal_loading = false;
             });
-          }, 2000);
         }
       });
     }

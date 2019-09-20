@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('api/userLogin', views.user_login, name='userLogin'),
+    path('api/userRegister', views.register_account, name='userRegister'),
     url(r'^static/(?P<path>.*)/$', serve, {"document_root": settings.STATIC_ROOT}, name='static'),
     url(r'^media/(?P<path>.*)', serve, {"document_root": settings.MEDIA_ROOT}, name='media'),
 ]
