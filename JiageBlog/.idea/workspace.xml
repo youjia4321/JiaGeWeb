@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4f04240-074a-464a-a732-e97322906b3d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/JiageBlog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/JiageBlog/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JiageBlog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/JiageBlog/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/components/JiageHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/components/JiageHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/router/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/views/JiageIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/views/JiageIndex.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/views/JiageLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/views/JiageLogin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/vue.config.js" afterDir="false" />
-    </list>
+    <list default="true" id="c4f04240-074a-464a-a732-e97322906b3d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +62,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="1" />
     <option name="width" value="1038" />
@@ -172,25 +157,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568872742960</updated>
-      <workItem from="1568872744883" duration="5314000" />
+      <workItem from="1568872744883" duration="5315000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5314000" />
+    <option name="totallyTimeSpent" value="5315000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.31995663" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.31995663" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
