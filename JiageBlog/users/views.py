@@ -39,17 +39,18 @@ def user_login(request):
         data = {'code': '404', 'msg': '用户不存在'}
         return JsonResponse({'result': data})
 
+
 # 判断邮箱格式
 def is_valid_email(addr):
-    valid_str=r'^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
-    if re.match(valid_str,addr):
+    valid_str = r'^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
+    if re.match(valid_str, addr):
         return True
-    else :
+    else:
         return False
 
 
 def register_account(request):
-    email = request.POST.get("email", '')
+    email = request.POST.get('email', '')
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
     valid_email = is_valid_email(email)
