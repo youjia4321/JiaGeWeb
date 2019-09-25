@@ -18,13 +18,13 @@ Vue.config.productionTip = false
 
 // 全局导航守卫
 router.beforeEach((to, from, next) => {
-  document.title = to.name; // //让页面title显示路由对应的name值
+  document.title = to.name; // 让页面title显示路由对应的name值
   let user = JSON.parse(sessionStorage.getItem("user"));
   if (to.path === '/account/login') {
     sessionStorage.removeItem("user");
   }
   if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
-    if (user) { //判断本地是否存在access_token
+    if (user) { //判断本地是否存在user
       next();
     } else {
       if (to.path === '/account/register') {

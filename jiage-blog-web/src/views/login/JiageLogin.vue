@@ -13,10 +13,7 @@
           </i-Input>
         </FormItem>
         <FormItem prop="password">
-          <div class="prompt" style="float: left">Password</div>
-          <div class="prompt" style="float: right">
-            <a>Forgot password?</a>
-          </div>
+          <div class="prompt">Password</div>
           <i-Input
             type="password"
             v-model="formInline.password"
@@ -26,6 +23,14 @@
           >
             <Icon type="ios-lock" slot="prepend" size="16"></Icon>
           </i-Input>
+        </FormItem>
+        <FormItem>
+          <div class="prompt" style="float: left">
+            <Checkbox v-model="checked">记住密码</Checkbox>
+          </div>
+          <div class="prompt" style="float: right">
+            <a>Forgot password?</a>
+          </div>
         </FormItem>
         <FormItem>
           <Button
@@ -49,6 +54,7 @@
 export default {
   data() {
     return {
+      checked: false,
       modal_loading: false,
       formInline: {
         user: "",
@@ -72,6 +78,16 @@ export default {
       }
     };
   },
+  mounted() {
+    let userinfo = localStorage.getItem("jiageWebInfo");
+    if (userinfo) {
+      // 如果存在就自动填写用户信息
+      userinfo = JSON.parse(localStorage.getItem("jiageWebInfo"));
+      this.formInline.user = userinfo.username;
+      this.formInline.password = userinfo.password;
+      this.checked = userinfo.checked;
+    }
+  },
   methods: {
     // post请求需要获取csrftoken
     getCookie(name) {
@@ -94,6 +110,16 @@ export default {
             .userLogin(username, password, this.getCookie("csrftoken"))
             .then(resp => {
               if (resp.result.code === "200") {
+                if (this.checked == true) {
+                  let userinfo = {
+                    username: username,
+                    password: password,
+                    checked: true
+                  };
+                  localStorage.setItem("jiageWebInfo", JSON.stringify(userinfo));
+                } else {
+                  localStorage.removeItem("jiageWebInfo");
+                }
                 var obj = {
                   username: this.formInline.user,
                   password: this.formInline.password,
@@ -133,7 +159,7 @@ export default {
   width: 308px;
   margin: 0 auto;
   border: 1px solid #d8dee2;
-  height: 257px;
+  height: 320px;
   border-radius: 5px;
   padding: 20px;
   font-size: 14px;

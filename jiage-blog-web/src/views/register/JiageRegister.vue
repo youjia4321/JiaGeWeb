@@ -20,7 +20,13 @@
         </FormItem>
         <FormItem prop="password">
           <div class="prompt">Password</div>
-          <i-Input type="password" v-model="formInline.password" placeholder="Password" clearable>
+          <i-Input
+            type="password"
+            v-model="formInline.password"
+            placeholder="Password"
+            clearable
+            @keyup.enter.native="handleSubmit('formInline')"
+          >
             <Icon type="ios-lock" slot="prepend" size="16"></Icon>
           </i-Input>
         </FormItem>
@@ -88,7 +94,7 @@ export default {
           .split(";")
           .shift();
     },
-    // 用户登录
+    // 用户注册
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
