@@ -5,7 +5,7 @@
       <div class="layout-operation">
         <MenuItem name="1">
           <router-link to="/account/add/blog">
-            <Icon type="md-create" />写博客
+            <Icon type="md-create" />&nbsp;&nbsp;写博客
           </router-link>
         </MenuItem>
         <MenuItem v-if="auth" name="2">
@@ -13,7 +13,7 @@
         </MenuItem>
         <MenuItem v-else name="2">
           <Dropdown>
-            <Icon type="md-mail" />&nbsp;&nbsp;消息
+            <Icon type="md-notifications" />
             <DropdownMenu slot="list">
               <DropdownItem>评论</DropdownItem>
               <DropdownItem>关注</DropdownItem>

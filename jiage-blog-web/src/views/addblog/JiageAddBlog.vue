@@ -28,8 +28,8 @@
                   type="text"
                   v-model="formInline.blogAuthor"
                   placeholder="enter blog author..."
-                  style="width: 300px"
-                  clearable
+                  style="width: 300px; color: #000"
+                  disabled
                 >
                   <Icon type="ios-person" slot="prepend" size="16"></Icon>
                 </i-Input>
@@ -49,7 +49,7 @@
                   type="success"
                   size="large"
                   long
-                  @click="handleSubmit('formInline')"
+                  @click="handleBlog('formInline')"
                 >Published articles</Button>
               </FormItem>
             </Form>
@@ -57,25 +57,44 @@
         </Card>
       </Content>
     </Layout>
-    <Modal v-model="clickModal" title="Published articles" @on-ok="ok" @on-cancel="cancel">
-      <Form :model="pubInline" :rules="pubRuleInline">
-        <FormItem>
-          <i-Input
-            type="text"
-            v-model="formInline.blogCategory"
-            placeholder="enter blog category..."
-            clearable
-          ></i-Input>
-        </FormItem>
-        <FormItem>
-          <i-Input
-            type="text"
-            v-model="formInline.blogTag"
-            placeholder="enter blog tag..."
-            clearable
-          ></i-Input>
-        </FormItem>
-      </Form>
+    <Modal v-model="clickModal" @on-visible-change="handleVisible">
+      <p slot="header" style="color:#57a3f3; text-align:center">
+        <Icon type="ios-information-circle"></Icon>
+        <span>Published articles</span>
+      </p>
+      <div style="text-align:center">
+        <Form ref="pubInline" :model="pubInline" :rules="pubRuleInline">
+          <FormItem prop="blogCategory">
+            <i-Input
+              type="text"
+              v-model="pubInline.blogCategory"
+              placeholder="enter blog category..."
+              clearable
+            >
+              <Icon type="md-bookmark" slot="prepend" size="16" />
+            </i-Input>
+          </FormItem>
+          <FormItem prop="blogTag">
+            <i-Input
+              type="text"
+              v-model="pubInline.blogTag"
+              placeholder="enter blog tag..."
+              clearable
+            >
+              <Icon type="md-pricetags" slot="prepend" size="16" />
+            </i-Input>
+          </FormItem>
+        </Form>
+      </div>
+      <div slot="footer">
+        <Button
+          type="primary"
+          size="large"
+          long
+          :loading="modal_loading"
+          @click="handleBlogSub('pubInline')"
+        >Published articles</Button>
+      </div>
     </Modal>
   </div>
 </template>
@@ -85,7 +104,8 @@ export default {
   data() {
     return {
       clickModal: false,
-      blogInline: {
+      modal_loading: false,
+      formInline: {
         blogTitle: "",
         blogContent: "",
         blogAuthor: ""
@@ -135,9 +155,24 @@ export default {
       }
     };
   },
+  created() {
+    var _this = this;
+    let user = JSON.parse(sessionStorage.getItem("user"));
+    _this.formInline.blogAuthor = user["username"];
+  },
   methods: {
-    // 用户登录
-    handleSubmit(name) {
+    // 获取csrftoken
+    getCookie(name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length === 2)
+        return parts
+          .pop()
+          .split(";")
+          .shift();
+    },
+    // 博客发布
+    handleBlog(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           this.clickModal = true;
@@ -146,17 +181,50 @@ export default {
         }
       });
     },
-    ok(name) {
+    handleBlogSub(name) {
+      var _this = this;
       this.$refs[name].validate(valid => {
         if (valid) {
-          this.$Message.info("Clicked Ok");
+          var title = _this.formInline.blogTitle;
+          var author = _this.formInline.blogAuthor;
+          var content = _this.formInline.blogContent;
+          var category = _this.pubInline.blogCategory;
+          var tag = _this.pubInline.blogTag;
+          _this.$http
+            .addBlog(
+              title,
+              author,
+              content,
+              category,
+              tag,
+              _this.getCookie("csrftoken")
+            )
+            .then(resp => {
+              if (resp.result.code === "200") {
+                _this.$Message.success(resp.result.msg);
+                _this.clickModal = false;
+                _this.formInline.blogTitle = "";
+                _this.formInline.blogContent = "";
+                _this.pubInline.blogCategory = "";
+                _this.pubInline.blogTag = "";
+                _this.$router.push({
+                  path: "/index"
+                });
+              } else {
+                _this.$Message.error(resp.result.msg);
+              }
+            });
         } else {
-          this.$Message.error("Fail!");
+          _this.$Message.error("Fail!");
         }
       });
     },
-    cancel() {
-      this.$Message.info("Clicked cancel");
+    handleVisible(bool) {
+      var _this = this;
+      if (bool === false) {
+        _this.pubInline.blogCategory = "";
+        _this.pubInline.blogTag = "";
+      }
     }
   }
 };

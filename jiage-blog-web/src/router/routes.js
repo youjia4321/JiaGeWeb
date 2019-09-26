@@ -6,6 +6,7 @@ const Register = () => import("@/views/register/JiageRegister")
 
 const Profile = () => import("@/views/profile/JiageProfile")
 const addBlog = () => import("@/views/addblog/JiageAddBlog")
+const blogDetail = () => import("@/views/details/JiageDetails")
 
 export default [
     {
@@ -55,5 +56,14 @@ export default [
             footer: Footer
         },
         meta: { requireAuth: true }
+    },
+    {
+        path: "/blog/details",
+        name: "Details",
+        components: {
+            default: blogDetail,
+            header: Header,
+            footer: Footer
+        }
     }
 ]

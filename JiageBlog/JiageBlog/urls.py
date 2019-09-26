@@ -18,13 +18,17 @@ from django.urls import path
 from django.conf.urls import url
 from django.views.static import serve
 from django.conf import settings
-from users import views
+from users import views as user
+from blogs import views as blog
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('api/userLogin', views.user_login, name='userLogin'),
-    path('api/userRegister', views.register_account, name='userRegister'),
+    path('', user.index, name='index'),
+    path('api/userLogin', user.user_login, name='userLogin'),
+    path('api/userRegister', user.register_account, name='userRegister'),
+    path('api/addBlog', blog.add_blog, name='addBlog'),
+    path('api/listOfBlog', blog.BlogListView.as_view(), name='listOfBlog'),
+    url(r'^api/blog/(\d+)/$', blog.get_one_blog, name='oneBlog'),
     url(r'^static/(?P<path>.*)/$', serve, {"document_root": settings.STATIC_ROOT}, name='static'),
     url(r'^media/(?P<path>.*)', serve, {"document_root": settings.MEDIA_ROOT}, name='media'),
 ]

@@ -9,7 +9,7 @@ class Category(models.Model):
 
     class Meta:
         db_table = 'blog_category'
-        verbose_name = "类别"
+        verbose_name = "博客类别"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -21,7 +21,7 @@ class Tag(models.Model):
 
     class Meta:
         db_table = 'blog_tag'
-        verbose_name = "标签"
+        verbose_name = "博客标签"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -36,11 +36,11 @@ class BlogInfo(models.Model):
     category = models.ForeignKey(Category, verbose_name='分类', on_delete=models.CASCADE, null=True, blank=True)
     # 多对一（博客--类别）
     tag = models.ManyToManyField(Tag, verbose_name='标签', default='')  # (多对多）
-    add_time = models.DateTimeField(verbose_name='发布时间', auto_now_add=True)
+    add_time = models.DateTimeField(verbose_name='发布时间', default=datetime.now)
 
     class Meta:
         db_table = 'blog_info'
-        verbose_name = '博客'
+        verbose_name = '博客信息'
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -48,16 +48,16 @@ class BlogInfo(models.Model):
 
 
 class Comment(models.Model):
-    blog = models.ForeignKey(BlogInfo, verbose_name='博客', on_delete=models.CASCADE)  # (博客--评论:一对多)
+    blog = models.ForeignKey(BlogInfo, verbose_name='博客', related_name='blog_comments', on_delete=models.CASCADE)  # (博客--评论:一对多)
     name = models.CharField(verbose_name='称呼', max_length=50)
     email = models.EmailField(verbose_name='邮箱')
     content = models.CharField(verbose_name='内容', max_length=500)
-    pub = models.DateTimeField(verbose_name='发布时间', auto_now_add=True)
+    pub = models.DateTimeField(verbose_name='发布时间', default=datetime.now)
 
     class Meta:
         db_table = 'blog_comment'
-        verbose_name = "评论"
-        verbose_name_plural = "评论"
+        verbose_name = "博客评论"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return str(self.blog)

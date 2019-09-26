@@ -47,3 +47,31 @@ export const userRegister = (email, username, password, headers) => {
         }
     })
 }
+
+
+// 发布博客
+export const addBlog = (title, author, content, category, tag, headers) => {
+    return ajax({
+        url: '/api/addBlog',
+        method: 'post',
+        responseType: 'json',
+        data: qs.stringify({ 'title': title, 'author': author, 'content': content, 'category': category, 'tag': tag }),
+        headers: {
+            'X-CSRFToken': headers
+        }
+    })
+}
+
+// 博客列表
+export const listOfBlog = () => {
+    return ajax({
+        url: '/api/listOfBlog',
+        method: 'get',
+        responseType: 'json'
+    })
+}
+
+// 博客详情
+export const blogDetails = (id) => {
+    return ajax.get(`/api/blog/${id}`)
+}
