@@ -1,108 +1,102 @@
 <template>
-  <div class="layout">
-    <Layout>
-      <Content :style="{padding: '0 200px'}">
-        <Breadcrumb :style="{margin: '20px 0'}">
-          <BreadcrumbItem>Progresses</BreadcrumbItem>
-          <BreadcrumbItem>Efforts to</BreadcrumbItem>
-          <BreadcrumbItem>Forward</BreadcrumbItem>
-        </Breadcrumb>
-        <Card>
-          <div style="min-height: 450px;">
-            <Form ref="formInline" :model="formInline" :rules="ruleInline">
-              <FormItem prop="blogTitle">
-                <div class="prompt">Subject</div>
-                <i-Input
-                  type="text"
-                  v-model="formInline.blogTitle"
-                  placeholder="enter blog subject..."
-                  style="width: 300px"
-                  clearable
-                >
-                  <Icon type="ios-school" slot="prepend" size="16"></Icon>
-                </i-Input>
-              </FormItem>
-              <FormItem prop="blogAuthor">
-                <div class="prompt">Author</div>
-                <i-Input
-                  type="text"
-                  v-model="formInline.blogAuthor"
-                  placeholder="enter blog author..."
-                  style="width: 300px; color: #000"
-                  disabled
-                >
-                  <Icon type="ios-person" slot="prepend" size="16"></Icon>
-                </i-Input>
-              </FormItem>
-              <FormItem prop="blogContent">
-                <div class="prompt">Content</div>
-                <Input
-                  v-model="formInline.blogContent"
-                  type="textarea"
-                  :rows="15"
-                  placeholder="enter blog content..."
-                />
-              </FormItem>
-              <FormItem>
-                <Button
-                  class="btn"
-                  type="success"
-                  size="large"
-                  long
-                  @click="handleBlog('formInline')"
-                >Published articles</Button>
-              </FormItem>
-            </Form>
-          </div>
-        </Card>
-      </Content>
-    </Layout>
-    <Modal v-model="clickModal" @on-visible-change="handleVisible">
-      <p slot="header" style="color:#57a3f3; text-align:center">
-        <Icon type="ios-information-circle"></Icon>
-        <span>Published articles</span>
-      </p>
-      <div style="text-align:center">
-        <Form ref="pubInline" :model="pubInline" :rules="pubRuleInline">
-          <FormItem prop="blogCategory">
+  <JiageContent :title="title">
+    <Card slot="main-content">
+      <div class="infinite-list-wrapper" style="min-height: 450px;">
+        <Form ref="formInline" :model="formInline" :rules="ruleInline">
+          <FormItem prop="blogTitle">
+            <div class="prompt">Subject</div>
             <i-Input
               type="text"
-              v-model="pubInline.blogCategory"
-              placeholder="enter blog category..."
+              v-model="formInline.blogTitle"
+              placeholder="enter blog subject..."
+              style="width: 300px"
               clearable
             >
-              <Icon type="md-bookmark" slot="prepend" size="16" />
+              <Icon type="ios-school" slot="prepend" size="16"></Icon>
             </i-Input>
           </FormItem>
-          <FormItem prop="blogTag">
+          <FormItem prop="blogAuthor">
+            <div class="prompt">Author</div>
             <i-Input
               type="text"
-              v-model="pubInline.blogTag"
-              placeholder="enter blog tag..."
-              clearable
+              v-model="formInline.blogAuthor"
+              placeholder="enter blog author..."
+              style="width: 300px; color: #000"
+              disabled
             >
-              <Icon type="md-pricetags" slot="prepend" size="16" />
+              <Icon type="ios-person" slot="prepend" size="16"></Icon>
             </i-Input>
+          </FormItem>
+          <FormItem prop="blogContent">
+            <div class="prompt">Content</div>
+            <Input
+              v-model="formInline.blogContent"
+              type="textarea"
+              :rows="15"
+              placeholder="enter blog content..."
+            />
+          </FormItem>
+          <FormItem>
+            <Button
+              class="btn"
+              type="success"
+              size="large"
+              long
+              @click="handleBlog('formInline')"
+            >Published articles</Button>
           </FormItem>
         </Form>
       </div>
-      <div slot="footer">
-        <Button
-          type="primary"
-          size="large"
-          long
-          :loading="modal_loading"
-          @click="handleBlogSub('pubInline')"
-        >Published articles</Button>
-      </div>
-    </Modal>
-  </div>
+      <Modal v-model="clickModal" @on-visible-change="handleVisible">
+        <p slot="header" style="color:#57a3f3; text-align:center">
+          <Icon type="ios-information-circle"></Icon>
+          <span>Published articles</span>
+        </p>
+        <div style="text-align:center">
+          <Form ref="pubInline" :model="pubInline" :rules="pubRuleInline">
+            <FormItem prop="blogCategory">
+              <i-Input
+                type="text"
+                v-model="pubInline.blogCategory"
+                placeholder="enter blog category..."
+                clearable
+              >
+                <Icon type="md-bookmark" slot="prepend" size="16" />
+              </i-Input>
+            </FormItem>
+            <FormItem prop="blogTag">
+              <i-Input
+                type="text"
+                v-model="pubInline.blogTag"
+                placeholder="enter blog tag..."
+                clearable
+              >
+                <Icon type="md-pricetags" slot="prepend" size="16" />
+              </i-Input>
+            </FormItem>
+          </Form>
+        </div>
+        <div slot="footer">
+          <Button
+            type="primary"
+            size="large"
+            long
+            :loading="modal_loading"
+            @click="handleBlogSub('pubInline')"
+          >Published articles</Button>
+        </div>
+      </Modal>
+    </Card>
+  </JiageContent>
 </template>
 
 <script>
+import JiageContent from "@/components/JiageContent";
+
 export default {
   data() {
     return {
+      title: "发布文章",
       clickModal: false,
       modal_loading: false,
       formInline: {
@@ -154,6 +148,9 @@ export default {
         ]
       }
     };
+  },
+  components: {
+    JiageContent
   },
   created() {
     var _this = this;
@@ -207,9 +204,6 @@ export default {
                 _this.formInline.blogContent = "";
                 _this.pubInline.blogCategory = "";
                 _this.pubInline.blogTag = "";
-                _this.$router.push({
-                  path: "/index"
-                });
               } else {
                 _this.$Message.error(resp.result.msg);
               }

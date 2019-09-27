@@ -7,9 +7,7 @@
           <div class="info">
             <p>
               <i>
-                作者：{{ item.author }}
-                &nbsp;&nbsp;
-                发表时间：{{ item.join_time }}
+                {{ item.join_time }}
                 &nbsp;&nbsp;
                 分类：{{ item.category }}
                 &nbsp;&nbsp;
@@ -35,52 +33,101 @@
                   <a class="person-info">访问主页</a>
                 </div>
               </Poptip>
-              <i>
-                &nbsp;
-                <a class="person-info">{{ item.author }}</a>
-              </i>
               <span class="blog-info">
+                &nbsp;&nbsp;|&nbsp;&nbsp;
                 阅读数
                 <span class="dight">{{ item.visit }}</span> &nbsp;&nbsp;|&nbsp;&nbsp; 评论数
                 <span class="dight">{{ item.comment_count }}</span>
               </span>
+              <span class="operation">
+                <span class="top">
+                  <a>置顶</a>
+                </span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <span class="edit">
+                  <a>编辑</a>
+                </span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <span class="del">
+                  <a @click="showModal(item.id)">删除</a>
+                </span>
+              </span>
             </div>
           </div>
+          <hr />
         </div>
       </div>
+      <Modal v-model="modalDel" width="300">
+        <p slot="header" style="color: #f60;">
+          <Icon type="ios-information-circle"></Icon>
+          <span>&nbsp;&nbsp;系统提示</span>
+        </p>
+        <p>确定要删除当前文章？</p>
+        <div slot="footer">
+          <Button type="error" size="large" long @click="handleDelBlog()">确认</Button>
+        </div>
+      </Modal>
     </Card>
   </JiageContent>
 </template>
+
 <script>
 import JiageContent from "@/components/JiageContent";
 
 export default {
-  name: "JiageIndex",
   data() {
     return {
-      title: "博客首页",
-      dataArr: []
+      title: "我的博客",
+      author: "",
+      dataArr: [],
+      modalDel: false,
+      delId: ""
     };
   },
   created() {
-    this.listOfBlog();
+    let user = JSON.parse(sessionStorage.getItem("user"));
+    this.author = user["username"];
+    this.getSelfBlog();
   },
   components: {
     JiageContent
   },
+  inject: ["reload"],
   methods: {
-    listOfBlog() {
-      var _this = this;
-      _this.$http.listOfBlog().then(resp => {
-        if (resp.result.code === "200") {
-          _this.dataArr = resp.result.data;
-        }
-      });
+    getCookie(name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length === 2)
+        return parts
+          .pop()
+          .split(";")
+          .shift();
+    },
+    getSelfBlog() {
+      this.$http
+        .selfBlogList(this.author, this.getCookie("csrftoken"))
+        .then(resp => {
+          if (resp.result.code === "200") {
+            this.dataArr = resp.result.data;
+          }
+        });
     },
     goBlogDetailPage(id) {
       this.$router.push({
         name: "Details",
         query: { blogId: id }
+      });
+    },
+    showModal(id) {
+      this.modalDel = true;
+      this.delId = id;
+    },
+    handleDelBlog() {
+      this.$http.delBlog(this.delId, this.getCookie("csrftoken")).then(resp => {
+        if (resp.result.code === "200") {
+          this.modalDel = false;
+          this.$Message.success(resp.result.msg);
+          this.delId = "";
+          this.reload();
+        }
       });
     }
   },
@@ -96,14 +143,7 @@ export default {
 };
 </script>
 
-<style scoped>
-.layout {
-  min-width: 1420px;
-}
-.ivu-breadcrumb > span:last-child {
-  font-weight: normal;
-  color: #999;
-}
+<style scoped lang="scss">
 .title {
   font-weight: 600;
   cursor: pointer;
@@ -113,6 +153,7 @@ export default {
 }
 .info {
   color: #888383;
+  cursor: pointer;
 }
 .tag {
   color: #f97311;
@@ -127,8 +168,23 @@ export default {
 h3 {
   font-size: 22px;
 }
-.blog-info {
+.operation {
+  display: none;
   float: right;
+}
+.operation a {
+  text-decoration: none;
+}
+.operation a:hover {
+  opacity: 0.6;
+}
+.del a {
+  color: red;
+}
+.info:hover {
+  .operation {
+    display: inline-block;
+  }
 }
 .dight {
   color: #4b82e4;

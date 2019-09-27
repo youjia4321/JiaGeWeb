@@ -1,32 +1,35 @@
 <template>
-  <div class="layout">
-    <Layout>
-      <Content :style="{padding: '0 200px'}">
-        <Breadcrumb :style="{margin: '20px 0'}">
-          <BreadcrumbItem>Progresses</BreadcrumbItem>
-          <BreadcrumbItem>Efforts to</BreadcrumbItem>
-          <BreadcrumbItem>Forward</BreadcrumbItem>
-        </Breadcrumb>
-        <Card>
-          <div style="min-height: 450px;">
-            <el-tabs tab-position="left" :style="{padding: '40px 0'}">
-              <el-tab-pane label="个人资料">个人资料</el-tab-pane>
-              <el-tab-pane label="我的收藏">我的收藏</el-tab-pane>
-              <el-tab-pane label="我的关注">我的关注</el-tab-pane>
-              <el-tab-pane label="我的粉丝">我的粉丝</el-tab-pane>
-              <el-tab-pane label="我的博客">我的博客</el-tab-pane>
-              <el-tab-pane label="我的下载">我的下载</el-tab-pane>
-              <el-tab-pane label="我的论坛">我的论坛</el-tab-pane>
-            </el-tabs>
-          </div>
-        </Card>
-      </Content>
-    </Layout>
-  </div>
+  <JiageContent :title="title">
+    <Card slot="main-content">
+      <div style="min-height: 450px;">
+        <el-tabs tab-position="left" :style="{padding: '40px 0'}">
+          <el-tab-pane label="个人资料">个人资料</el-tab-pane>
+          <el-tab-pane label="我的收藏">我的收藏</el-tab-pane>
+          <el-tab-pane label="我的关注">我的关注</el-tab-pane>
+          <el-tab-pane label="我的粉丝">我的粉丝</el-tab-pane>
+          <el-tab-pane label="我的博客">我的博客</el-tab-pane>
+          <el-tab-pane label="我的下载">我的下载</el-tab-pane>
+          <el-tab-pane label="我的论坛">我的论坛</el-tab-pane>
+        </el-tabs>
+      </div>
+    </Card>
+  </JiageContent>
 </template>
 
 <script>
-export default {};
+import JiageContent from "@/components/JiageContent";
+
+export default {
+  name: "JiageProfile",
+  data() {
+    return {
+      title: "个人中心"
+    };
+  },
+  components: {
+    JiageContent
+  }
+};
 </script>
 
 <style scoped>

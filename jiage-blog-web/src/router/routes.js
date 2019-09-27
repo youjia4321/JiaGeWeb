@@ -5,8 +5,13 @@ const Login = () => import("@/views/login/JiageLogin")
 const Register = () => import("@/views/register/JiageRegister")
 
 const Profile = () => import("@/views/profile/JiageProfile")
+const mineBlog = () => import("@/views/profile/JiageMineBlog")
+const mineCollect = () => import("@/views/profile/JiageCollect")
+const Center = () => import("@/views/profile/JiageCenter")
+
 const addBlog = () => import("@/views/addblog/JiageAddBlog")
 const blogDetail = () => import("@/views/details/JiageDetails")
+
 
 export default [
     {
@@ -62,6 +67,33 @@ export default [
         name: "Details",
         components: {
             default: blogDetail,
+            header: Header,
+            footer: Footer
+        }
+    },
+    {
+        path: "/account/mineblog",
+        name: "Mineblog",
+        components: {
+            default: mineBlog,
+            header: Header,
+            footer: Footer
+        }
+    },
+    {
+        path: "/account/collect",
+        name: "Collect",
+        components: {
+            default: mineCollect,
+            header: Header,
+            footer: Footer
+        }
+    },
+    {
+        path: "/account/center",
+        name: "Center",
+        components: {
+            default: Center,
             header: Header,
             footer: Footer
         }

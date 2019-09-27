@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from blogs.models import BlogInfo, Category, Tag
+from blogs.models import BlogInfo, Category, Tag, Comment
 from users.models import UserProfile
 from django.views.generic.base import View
 from django.db.models import Q
@@ -68,7 +68,30 @@ def get_one_blog(request, blog_id):
             tag_list.append(t.name)
     blog_detail['tags'] = tag_list
     blog_detail['comment_count'] = str(len(blog.blog_comments.all()))
-    data = {'code': '200', 'data': blog_detail}
+    comments = blog.blog_comments.all().order_by('-pub')
+    comments_list = list()
+    for c in comments:
+        comment = dict()
+        comment['author'] = c.name
+        comment_portrait = UserProfile.objects.get(Q(username=c.name) | Q(email=c.name)).portrait
+        comment['portrait'] = str(comment_portrait)
+        comment['content'] = c.content
+        comment['pub'] = str(c.pub)
+        comments_list.append(comment)
+    data = {'code': '200', 'data': blog_detail, 'comments': comments_list}
+    return JsonResponse({'result': data})
+
+
+def comment_blog(request):
+    blog_id = request.POST.get('id', '')
+    blog = BlogInfo.objects.get(id=blog_id)
+    username = request.POST.get('name', '')
+    content = request.POST.get('content', '')
+    user = UserProfile.objects.get(Q(username=username) | Q(email=username))
+    name = user.username
+    email = user.email
+    Comment.objects.create(blog=blog, name=name, email=email, content=content)
+    data = {'code': '200'}
     return JsonResponse({'result': data})
 
 
@@ -105,3 +128,58 @@ def add_blog(request):
     except Exception as e:
         data = {'code': '10001', 'msg': '发布失败'}
         return JsonResponse({'result': data})
+
+
+def self_blog(request):
+    author = request.POST.get('author', '')
+    user = UserProfile.objects.get(Q(username=author) | Q(email=author))
+    blog_list = BlogInfo.objects.filter(Q(author=user.username) | Q(author=user.email)).order_by('-add_time')
+    all_blog = list()
+    for b in blog_list:
+        blog = dict()
+        blog['id'] = b.id
+        blog['title'] = b.title
+        blog['author'] = b.author
+        blog['portrait'] = str(user.portrait)
+        blog['content'] = b.content
+        blog['category'] = str(b.category)
+        blog['join_time'] = str(b.add_time)
+        blog['visit'] = b.visit
+        tags = b.tag.all()
+        tag_list = list()
+        for t in tags:
+            if t.name != "":
+                tag_list.append(t.name)
+        blog['tags'] = tag_list
+        blog['comment_count'] = str(len(b.blog_comments.all()))
+        all_blog.append(blog)
+    data = {'code': '200', 'data': all_blog}
+    return JsonResponse({'result': data})
+
+
+def delete(request):
+    blog_id = request.POST.get('blog_id', '')
+    blog = BlogInfo.objects.get(id=blog_id)
+    blog.delete()
+    data = {'code': '200', 'msg': '删除成功'}
+    return JsonResponse({'result': data})
+
+
+def center_manage(request):
+    author = request.POST.get('author', '')
+    user = UserProfile.objects.get(Q(username=author) | Q(email=author))
+    person = dict()
+    person['username'] = user.username
+    person['gender'] = user.gender
+    person['mobile'] = user.mobile
+    person['email'] = user.email
+    person['portrait'] = str(user.portrait)
+    data = {'code': '200', 'data': person}
+    return JsonResponse({'result': data})
+
+
+def upload_avatar(request):
+    file = request.FILES.get('file', '')
+    # print(file, type(file))
+    data = {'code': '200', 'data': 'success'}
+    return JsonResponse({'result': data})

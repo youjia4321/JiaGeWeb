@@ -37,12 +37,12 @@
                 <Icon type="ios-pricetags-outline" />&nbsp;我的关注
               </DropdownItem>
             </router-link>
-            <router-link to="/account/profile">
+            <router-link to="/account/collect">
               <DropdownItem name="collection">
                 <Icon type="ios-bookmark-outline" />&nbsp;我的收藏
               </DropdownItem>
             </router-link>
-            <router-link to="/account/profile">
+            <router-link to="/account/center">
               <DropdownItem name="profile">
                 <Icon type="ios-person-outline" />&nbsp;个人中心
               </DropdownItem>
@@ -52,7 +52,7 @@
                 <Icon type="ios-settings-outline" />&nbsp;账号设置
               </DropdownItem>
             </router-link>
-            <router-link to="/account/profile">
+            <router-link to="/account/mineblog">
               <DropdownItem divided name="blog">
                 <Icon type="ios-paper-outline" />&nbsp;我的博客
               </DropdownItem>
@@ -136,7 +136,7 @@ export default {
 
 <style scoped>
 .ivu-menu-item a,
-.ivu-menu-item{
+.ivu-menu-item {
   color: #babcbd;
   text-decoration: none;
 }
@@ -148,6 +148,11 @@ export default {
 .ivu-layout-header {
   min-width: 1420px;
   background: #24292e;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
 }
 .ivu-menu-dark {
   background: #24292e;

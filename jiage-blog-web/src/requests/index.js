@@ -71,7 +71,59 @@ export const listOfBlog = () => {
     })
 }
 
-// 博客详情
-export const blogDetails = (id) => {
+// 博客详情（get）
+export const getBlogDetails = (id) => {
     return ajax.get(`/api/blog/${id}`)
+}
+
+// （post）
+export const postBlogDetails = (id, name, content, headers) => {
+    return ajax({
+        url: '/api/commentOfBlog',
+        method: 'post',
+        responseType: 'json',
+        data: qs.stringify({ 'id': id, 'name': name, 'content': content }),
+        headers: {
+            'X-CSRFToken': headers
+        }
+    })
+}
+
+// 个人博客
+export const selfBlogList = (author, headers) => {
+    return ajax({
+        url: '/api/selfOfBlog',
+        method: 'post',
+        responseType: 'json',
+        data: qs.stringify({ 'author': author }),
+        headers: {
+            'X-CSRFToken': headers
+        }
+    })
+}
+
+// 删除博客
+export const delBlog = (id, headers) => {
+    return ajax({
+        url: '/api/delOfBlog',
+        method: 'post',
+        responseType: 'json',
+        data: qs.stringify({ 'blog_id': id }),
+        headers: {
+            'X-CSRFToken': headers
+        }
+    })
+}
+
+// 个人中心
+export const centerManage = (author, headers) => {
+    return ajax({
+        url: '/api/centerManage',
+        method: 'post',
+        responseType: 'json',
+        data: qs.stringify({ 'author': author }),
+        headers: {
+            'X-CSRFToken': headers
+        }
+    })
 }
