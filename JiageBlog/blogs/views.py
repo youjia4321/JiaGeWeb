@@ -55,7 +55,7 @@ def get_one_blog(request, blog_id):
     blog_detail['id'] = blog_id
     blog_detail['title'] = blog.title
     blog_detail['author'] = blog.author
-    user_portrait = UserProfile.objects.get(Q(username=b.author) | Q(email=b.author)).portrait
+    user_portrait = UserProfile.objects.get(Q(username=blog.author) | Q(email=blog.author)).portrait
     blog_detail['portrait'] = str(user_portrait)
     blog_detail['content'] = blog.content
     blog_detail['category'] = str(blog.category)
