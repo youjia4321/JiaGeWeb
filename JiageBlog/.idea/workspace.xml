@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blogs/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="182" selection-start-line="182" selection-end-line="182" selection-end-column="29" />
+            <state relative-caret-position="354">
+              <caret line="180" column="27" selection-start-line="180" selection-start-column="27" selection-end-line="180" selection-end-column="27" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#268#410#0" />
@@ -39,6 +39,7 @@
                 <element signature="e#4773#5702#0" />
                 <element signature="e#5742#5880#0" />
                 <element signature="e#5964#6307#0" />
+                <element signature="e#6403#6486#0" />
               </folding>
             </state>
           </provider>
@@ -83,7 +84,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="494" />
     <option name="y" value="143" />
     <option name="width" value="1038" />
@@ -178,12 +179,12 @@
       <option name="presentableId" value="Default" />
       <updated>1569459431942</updated>
       <workItem from="1569459440702" duration="17384000" />
-      <workItem from="1569545898528" duration="13775000" />
+      <workItem from="1569545898528" duration="14376000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31159000" />
+    <option name="totallyTimeSpent" value="31760000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -305,8 +306,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blogs/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="182" selection-start-line="182" selection-end-line="182" selection-end-column="29" />
+        <state relative-caret-position="354">
+          <caret line="180" column="27" selection-start-line="180" selection-start-column="27" selection-end-line="180" selection-end-column="27" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#268#410#0" />
@@ -317,6 +318,7 @@
             <element signature="e#4773#5702#0" />
             <element signature="e#5742#5880#0" />
             <element signature="e#5964#6307#0" />
+            <element signature="e#6403#6486#0" />
           </folding>
         </state>
       </provider>
