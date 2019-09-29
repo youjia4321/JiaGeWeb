@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5afea5bd-fae2-41d4-9e50-e7b71f62568d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JiageBlog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/JiageBlog/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JiageBlog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/JiageBlog/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogs/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogs/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/components/JiageContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/components/JiageContent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/components/JiageHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/components/JiageHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/requests/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/requests/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/router/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/views/addblog/JiageAddBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/views/addblog/JiageAddBlog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/views/details/JiageDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/views/details/JiageDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/views/index/JiageIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/views/index/JiageIndex.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/views/login/JiageLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/views/login/JiageLogin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/views/profile/JiageCenter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/views/profile/JiageCenter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jiage-blog-web/src/views/profile/JiageMineBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../jiage-blog-web/src/views/profile/JiageMineBlog.vue" afterDir="false" />
-    </list>
+    <list default="true" id="5afea5bd-fae2-41d4-9e50-e7b71f62568d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,22 +16,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blogs/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="-722">
+              <caret line="84" selection-start-line="84" selection-end-line="84" />
               <folding>
-                <element signature="e#1#37#0" expanded="true" />
-                <element signature="e#308#450#0" />
-                <element signature="e#483#1580#0" />
-                <element signature="e#1623#2942#0" />
-                <element signature="e#2976#3419#0" />
-                <element signature="e#3449#4742#0" />
-                <element signature="e#4773#5714#0" />
-                <element signature="e#5742#5929#0" />
-                <element signature="e#5964#6367#0" />
-                <element signature="e#6435#6974#0" />
-                <element signature="e#6945#7133#0" />
-                <element signature="e#7175#7455#0" />
-                <element signature="e#7821#8731#0" />
+                <element signature="e#480#1577#0" />
+                <element signature="e#1620#2939#0" />
+                <element signature="e#2973#3416#0" />
+                <element signature="e#3446#4739#0" />
+                <element signature="e#4770#5711#0" />
               </folding>
             </state>
           </provider>
@@ -60,7 +32,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blogs/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="104">
               <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -92,7 +64,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JiageBlog/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
+            <state relative-caret-position="806">
               <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
               <folding>
                 <element signature="e#633#665#0" expanded="true" />
@@ -201,16 +173,18 @@
       <workItem from="1569459440702" duration="17384000" />
       <workItem from="1569545898528" duration="14380000" />
       <workItem from="1569719076824" duration="11524000" />
+      <workItem from="1569746948581" duration="458000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43288000" />
+    <option name="totallyTimeSpent" value="43746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25799572" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -283,9 +257,7 @@
     <entry file="file://$PROJECT_DIR$/media/person/default_avatar.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/media/avatar1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/media/avatar1.jpg" />
     <entry file="file://$PROJECT_DIR$/users/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -307,19 +279,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/users/models.py">
+    <entry file="file://$PROJECT_DIR$/blogs/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
+        <state relative-caret-position="-722">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+          <folding>
+            <element signature="e#480#1577#0" />
+            <element signature="e#1620#2939#0" />
+            <element signature="e#2973#3416#0" />
+            <element signature="e#3446#4739#0" />
+            <element signature="e#4770#5711#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JiageBlog/urls.py">
+    <entry file="file://$PROJECT_DIR$/blogs/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+        <state relative-caret-position="104">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
           <folding>
-            <element signature="e#633#665#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -333,34 +312,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blogs/models.py">
+    <entry file="file://$PROJECT_DIR$/users/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="156">
+          <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blogs/views.py">
+    <entry file="file://$PROJECT_DIR$/JiageBlog/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="806">
+          <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
           <folding>
-            <element signature="e#1#37#0" expanded="true" />
-            <element signature="e#308#450#0" />
-            <element signature="e#483#1580#0" />
-            <element signature="e#1623#2942#0" />
-            <element signature="e#2976#3419#0" />
-            <element signature="e#3449#4742#0" />
-            <element signature="e#4773#5714#0" />
-            <element signature="e#5742#5929#0" />
-            <element signature="e#5964#6367#0" />
-            <element signature="e#6435#6974#0" />
-            <element signature="e#6945#7133#0" />
-            <element signature="e#7175#7455#0" />
-            <element signature="e#7821#8731#0" />
+            <element signature="e#633#665#0" expanded="true" />
           </folding>
         </state>
       </provider>

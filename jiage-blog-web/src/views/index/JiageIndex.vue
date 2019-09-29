@@ -172,8 +172,4 @@ h3 {
 .tag-list {
   width: 135px;
 }
-.cate-list {
-  position: fixed;
-  display: grid;
-}
 </style>
