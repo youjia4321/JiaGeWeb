@@ -1,9 +1,9 @@
-from django.shortcuts import render
 from django.http import JsonResponse
 from blogs.models import BlogInfo, Category, Tag, Comment
 from users.models import UserProfile
 from django.views.generic.base import View
 from django.db.models import Q
+from django.conf import settings
 # Create your views here.
 
 
@@ -180,6 +180,70 @@ def center_manage(request):
 
 def upload_avatar(request):
     file = request.FILES.get('file', '')
-    # print(file, type(file))
-    data = {'code': '200', 'data': 'success'}
+    author = request.POST.get('author', '')
+    img_addr = '%s/person/%s' % (settings.MEDIA_ROOT, file.name)
+    # 写入文件
+    with open(img_addr, 'wb') as f:
+        for f_img in file.chunks():
+            f.write(f_img)
+    user = UserProfile.objects.get(Q(username=author) | Q(email=author))
+    user.portrait = 'person/'+file.name
+    user.save()
+    data = {'code': '200', 'msg': '修改头像成功'}
+    return JsonResponse({'result': data})
+
+
+def edit_blog(request, blog_id):
+    blog = BlogInfo.objects.get(id=blog_id)
+    title = blog.title
+    content = blog.content
+    data = {'code': '200', 'title': title, 'content': content}
+    return JsonResponse({'result': data})
+
+
+def edit_post_save(request):
+    blog_id = request.POST.get('id', '')
+    title = request.POST.get('title', '')
+    content = request.POST.get('content', '')
+    content = request.POST.get('content', '')
+    blog_info = BlogInfo.objects.get(id=blog_id)
+    blog_info.title = title
+    blog_info.content = content
+    blog_info.save()
+    return JsonResponse({'result': {'code': '200', 'msg': '编辑成功'}})
+
+
+def get_all_category(request):
+    cate_list = Category.objects.all()
+    all_cate = []
+    for c in cate_list:
+        all_cate.append(c.name)
+    return JsonResponse({'result': {'code': '200', 'all_cate': all_cate}})
+
+
+def get_choose_cate(request):
+    cate = request.POST.get('cate', '')
+    category = Category.objects.get(name=cate)
+    blog_list = category.category_blogs.all()
+    all_blog = list()
+    for b in blog_list:
+        blog_info = dict()
+        blog_info['id'] = b.id
+        blog_info['title'] = b.title
+        blog_info['author'] = b.author
+        user_portrait = UserProfile.objects.get(Q(username=b.author) | Q(email=b.author)).portrait
+        blog_info['portrait'] = str(user_portrait)
+        blog_info['content'] = b.content
+        blog_info['category'] = str(b.category)
+        blog_info['join_time'] = str(b.add_time)
+        blog_info['visit'] = b.visit
+        tags = b.tag.all()
+        tag_list = list()
+        for t in tags:
+            if t.name != "":
+                tag_list.append(t.name)
+        blog_info['tags'] = tag_list
+        blog_info['comment_count'] = str(len(b.blog_comments.all()))
+        all_blog.append(blog_info)
+    data = {'code': '200', 'data': all_blog}
     return JsonResponse({'result': data})

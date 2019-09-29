@@ -38,50 +38,11 @@
               type="success"
               size="large"
               long
-              @click="handleBlog('formInline')"
+              @click="handleBlogSub('formInline')"
             >Published articles</Button>
           </FormItem>
         </Form>
       </div>
-      <Modal v-model="clickModal" @on-visible-change="handleVisible">
-        <p slot="header" style="color:#57a3f3; text-align:center">
-          <Icon type="ios-information-circle"></Icon>
-          <span>Published articles</span>
-        </p>
-        <div style="text-align:center">
-          <Form ref="pubInline" :model="pubInline" :rules="pubRuleInline">
-            <FormItem prop="blogCategory">
-              <i-Input
-                type="text"
-                v-model="pubInline.blogCategory"
-                placeholder="enter blog category..."
-                clearable
-              >
-                <Icon type="md-bookmark" slot="prepend" size="16" />
-              </i-Input>
-            </FormItem>
-            <FormItem prop="blogTag">
-              <i-Input
-                type="text"
-                v-model="pubInline.blogTag"
-                placeholder="enter blog tag..."
-                clearable
-              >
-                <Icon type="md-pricetags" slot="prepend" size="16" />
-              </i-Input>
-            </FormItem>
-          </Form>
-        </div>
-        <div slot="footer">
-          <Button
-            type="primary"
-            size="large"
-            long
-            :loading="modal_loading"
-            @click="handleBlogSub('pubInline')"
-          >Published articles</Button>
-        </div>
-      </Modal>
     </Card>
   </JiageContent>
 </template>
@@ -93,9 +54,7 @@ import { VueEditor } from "vue2-editor";
 export default {
   data() {
     return {
-      title: "发布文章",
-      clickModal: false,
-      modal_loading: false,
+      title: "编辑文章",
       formInline: {
         blogTitle: "",
         blogContent: "",
@@ -123,26 +82,6 @@ export default {
             trigger: "blur"
           }
         ]
-      },
-      pubInline: {
-        blogCategory: "",
-        blogTag: ""
-      },
-      pubRuleInline: {
-        blogCategory: [
-          {
-            required: true,
-            message: "Please enter the blog categroy",
-            trigger: "blur"
-          }
-        ],
-        blogTag: [
-          {
-            required: true,
-            message: "Please enter the blog tag",
-            trigger: "blur"
-          }
-        ]
       }
     };
   },
@@ -150,12 +89,22 @@ export default {
     JiageContent,
     VueEditor
   },
+  inject: ["reload"],
   created() {
-    var _this = this;
+    this.blogId = this.$route.query.blogId;
+    this.getBlogInfo();
     let user = JSON.parse(sessionStorage.getItem("user"));
-    _this.formInline.blogAuthor = user["username"];
+    this.formInline.blogAuthor = user["username"];
   },
   methods: {
+    getBlogInfo() {
+      this.$http.getBlogEdit(this.blogId).then(resp => {
+        if (resp.result.code === "200") {
+          this.formInline.blogTitle = resp.result.title;
+          this.formInline.blogContent = resp.result.content;
+        }
+      });
+    },
     // 获取csrftoken
     getCookie(name) {
       var value = "; " + document.cookie;
@@ -166,42 +115,27 @@ export default {
           .split(";")
           .shift();
     },
-    // 博客发布
-    handleBlog(name) {
-      this.$refs[name].validate(valid => {
-        if (valid) {
-          this.clickModal = true;
-        } else {
-          this.$Message.error("Fail!");
-        }
-      });
-    },
+    // 编辑保存
     handleBlogSub(name) {
       var _this = this;
       this.$refs[name].validate(valid => {
         if (valid) {
           var title = _this.formInline.blogTitle;
-          var author = _this.formInline.blogAuthor;
           var content = _this.formInline.blogContent;
-          var category = _this.pubInline.blogCategory;
-          var tag = _this.pubInline.blogTag;
           _this.$http
-            .addBlog(
+            .postSaveBlog(
+              this.blogId,
               title,
-              author,
               content,
-              category,
-              tag,
               _this.getCookie("csrftoken")
             )
             .then(resp => {
               if (resp.result.code === "200") {
                 _this.$Message.success(resp.result.msg);
-                _this.clickModal = false;
-                _this.formInline.blogTitle = "";
-                _this.formInline.blogContent = "";
-                _this.pubInline.blogCategory = "";
-                _this.pubInline.blogTag = "";
+                this.$router.push({
+                  name: "Mineblog"
+                });
+                this.reload();
               } else {
                 _this.$Message.error(resp.result.msg);
               }
@@ -210,13 +144,6 @@ export default {
           _this.$Message.error("Fail!");
         }
       });
-    },
-    handleVisible(bool) {
-      var _this = this;
-      if (bool === false) {
-        _this.pubInline.blogCategory = "";
-        _this.pubInline.blogTag = "";
-      }
     }
   }
 };
@@ -237,5 +164,4 @@ export default {
 .btn {
   font-weight: 600;
 }
-
 </style>

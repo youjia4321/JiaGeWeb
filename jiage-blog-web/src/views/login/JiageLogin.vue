@@ -112,16 +112,19 @@ export default {
               if (resp.result.code === "200") {
                 if (this.checked == true) {
                   let userinfo = {
-                    username: username,
+                    username: resp.result.username,
                     password: password,
                     checked: true
                   };
-                  localStorage.setItem("jiageWebInfo", JSON.stringify(userinfo));
+                  localStorage.setItem(
+                    "jiageWebInfo",
+                    JSON.stringify(userinfo)
+                  );
                 } else {
                   localStorage.removeItem("jiageWebInfo");
                 }
                 var obj = {
-                  username: this.formInline.user,
+                  username: resp.result.username,
                   password: this.formInline.password,
                   avatar: resp.result.avatar
                 };

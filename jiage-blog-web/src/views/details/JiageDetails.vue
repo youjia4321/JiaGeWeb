@@ -20,9 +20,7 @@
               >{{ dataArr }}&nbsp;&nbsp;</span>
             </i>
           </p>
-          <div>
-            <pre>{{ dataArr.content }}</pre>
-          </div>
+          <div class="blog-content" v-html="dataArr.content"></div>
           <br />
           <div class="blog-base-info">
             <Poptip trigger="hover" placement="right">
@@ -218,5 +216,10 @@ export default {
 }
 h3 {
   font-size: 22px;
+}
+.blog-content {
+  border: 1px solid #ece9e9;
+  padding: 20px;
+  border-radius: 5px;
 }
 </style>

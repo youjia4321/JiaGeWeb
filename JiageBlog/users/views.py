@@ -29,8 +29,9 @@ def user_login(request):
     user = check(username=username, password=password)
     if user is not None:
         if user is not False:
+            username = user.username
             avatar = user.portrait
-            data = {'code': '200', 'msg': '登录成功', 'avatar': str(avatar)}
+            data = {'code': '200', 'msg': '登录成功', 'username': username, 'avatar': str(avatar)}
             return JsonResponse({'result': data})
         else:
             data = {'code': '10001', 'msg': '密码错误'}

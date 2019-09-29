@@ -127,3 +127,53 @@ export const centerManage = (author, headers) => {
         }
     })
 }
+
+
+// 上传头像
+export const changeAvatar = () => {
+    return ajax({
+        url: '/api/uploadAvatar',
+        responseType: 'json'
+    })
+}
+
+
+// 编辑（get）
+export const getBlogEdit = (id) => {
+    return ajax.get(`/api/edit/${id}`)
+}
+
+// 编辑后保存
+export const postSaveBlog = (id, title, content, headers) => {
+    return ajax({
+        url: '/api/blogSave',
+        method: 'post',
+        responseType: 'json',
+        data: qs.stringify({ 'id': id, 'title': title, 'content': content }),
+        headers: {
+            'X-CSRFToken': headers
+        }
+    })
+}
+
+// 分类标签
+export const getCategory = () => {
+    return ajax({
+        url: "/api/allCategory",
+        method: "get"
+    })
+}
+
+// 选中标签
+
+export const getChooseCategory = (cate, headers) => {
+    return ajax({
+        url: "/api/getChooseCategory",
+        method: "post",
+        responseType: "json",
+        data: qs.stringify({ 'cate': cate }),
+        headers: {
+            'X-CSRFToken': headers
+        }
+    })
+}

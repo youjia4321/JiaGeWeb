@@ -31,7 +31,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .ivu-breadcrumb a {
   color: #fff !important;
 }
@@ -52,5 +52,14 @@ export default {
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: rgba(85, 85, 85, 0.25);
+}
+.ql-editor {
+  min-height: 350px !important;
+}
+.ivu-tag:hover {
+  background: red !important;
+  .ivu-tag-text {
+    color: #fff !important;
+  }
 }
 </style>

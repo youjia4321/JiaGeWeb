@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from users.models import UserProfile
+from tinymce.models import HTMLField
 # Create your models here.
 
 
@@ -31,9 +32,9 @@ class Tag(models.Model):
 class BlogInfo(models.Model):
     title = models.CharField(verbose_name='博客标题', max_length=150)
     author = models.CharField(verbose_name='作者', max_length=20, default='')
-    content = models.TextField(verbose_name='博客正文')
+    content = HTMLField(verbose_name='博客正文')
     visit = models.IntegerField(default=0, verbose_name='浏览量')
-    category = models.ForeignKey(Category, verbose_name='分类', on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Category, verbose_name='分类', related_name='category_blogs', on_delete=models.CASCADE, null=True, blank=True)
     # 多对一（博客--类别）
     tag = models.ManyToManyField(Tag, verbose_name='标签', default='')  # (多对多）
     add_time = models.DateTimeField(verbose_name='发布时间', default=datetime.now)

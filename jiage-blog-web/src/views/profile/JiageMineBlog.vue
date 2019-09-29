@@ -19,7 +19,7 @@
                 >{{ item }}&nbsp;&nbsp;</span>
               </i>
             </p>
-            <div>{{ item.content | capitalize }}</div>
+            <div v-html="$options.filters.capitalize(item.content)"></div>
             <br />
             <div class="blog-base-info">
               <Poptip trigger="hover" :title="item.author" placement="right">
@@ -44,7 +44,7 @@
                   <a>置顶</a>
                 </span>&nbsp;&nbsp;|&nbsp;&nbsp;
                 <span class="edit">
-                  <a>编辑</a>
+                  <a @click="goEditPage(item.id)">编辑</a>
                 </span>&nbsp;&nbsp;|&nbsp;&nbsp;
                 <span class="del">
                   <a @click="showModal(item.id)">删除</a>
@@ -129,6 +129,12 @@ export default {
           this.reload();
         }
       });
+    },
+    goEditPage(id){
+      this.$router.push({
+        name: "Editblog",
+        query: { blogId: id }
+      })
     }
   },
   filters: {

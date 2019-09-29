@@ -24,7 +24,6 @@ export default {
 <style scoped>
 .layout {
   min-width: 1420px;
-  margin-top: 64px;
 }
 .ivu-breadcrumb > span:last-child {
   font-weight: normal;

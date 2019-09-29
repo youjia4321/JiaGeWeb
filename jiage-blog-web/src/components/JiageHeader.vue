@@ -32,8 +32,11 @@
             <Icon type="md-arrow-dropdown" />
           </div>
           <DropdownMenu slot="list">
-            <router-link to="/account/profile">
               <DropdownItem name="attention">
+                <Icon type="ios-person" />&nbsp;<span class="user">{{user}}</span>
+              </DropdownItem>
+            <router-link to="/account/profile">
+              <DropdownItem divided name="attention">
                 <Icon type="ios-pricetags-outline" />&nbsp;我的关注
               </DropdownItem>
             </router-link>
@@ -148,11 +151,6 @@ export default {
 .ivu-layout-header {
   min-width: 1420px;
   background: #24292e;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
 }
 .ivu-menu-dark {
   background: #24292e;
@@ -215,5 +213,9 @@ export default {
 .ivu-dropdown-menu a {
   color: #515a6e;
   text-decoration: none;
+}
+.user{
+  color: #d88787;
+  font-size: 10px;
 }
 </style>

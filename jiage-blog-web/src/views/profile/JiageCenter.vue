@@ -35,13 +35,23 @@
           ref="upload"
           type="drag"
           :before-upload="handleUpload"
+          :on-success="uploadSuccess"
+          :on-error="uploadError"
+          :on-exceeded-size="handleMaxSize"
+          :max-size="2048"
+          :data="data"
+          :format="['jpg', 'png', 'jpeg']"
+          :on-format-error="handleFormatError2"
           action="http://192.168.1.65:8000/api/uploadAvatar"
         >
           <div style="padding: 20px 0">
             <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-            <p>Click or drag files here to upload</p>
+            <p>Click or drag picture here to upload</p>
           </div>
         </Upload>
+        <div slot="footer">
+          <Button type="primary" @click="cancelBtn">取消</Button>
+        </div>
       </Modal>
     </Card>
   </JiageContent>
@@ -56,17 +66,22 @@ export default {
       title: "个人中心",
       upload: false,
       author: "",
+      pwd: "",
       perosnInfo: [],
-      file: ""
+      file: "",
+      data: ""
     };
   },
   components: {
     JiageContent
   },
+  inject: ["reload"],
   created() {
     let user = JSON.parse(sessionStorage.getItem("user"));
     this.author = user["username"];
+    this.pwd = user["password"];
     this.getSelfInfo();
+    this.data = { author: this.author };
   },
   methods: {
     getCookie(name) {
@@ -89,8 +104,41 @@ export default {
     },
     handleUpload(file) {
       this.file = file;
-    //   console.log(this.file)
       return true;
+    },
+    uploadSuccess(res) {
+      //上传成功
+      this.$Message.info(res.result.msg);
+      if (res.result.code == 200) {
+        this.$http
+          .userLogin(this.author, this.pwd, this.getCookie("csrftoken"))
+          .then(resp => {
+            if (resp.result.code === "200") {
+              var obj = {
+                username: this.author,
+                password: this.pwd,
+                avatar: resp.result.avatar
+              };
+              sessionStorage.setItem("user", JSON.stringify(obj));
+            }
+          });
+      }
+      this.reload();
+    },
+    handleFormatError2() {
+      this.$Message.error("文件格式不正确,请上传jpg、jpeg、png格式文件");
+    },
+    uploadError(error) {
+      this.$Message.info(error);
+    },
+    handleMaxSize(file) {
+      this.$Notice.warning({
+        title: "超出文件大小限制",
+        desc: "文件 " + file.name + " 太大，不能超过 2M。"
+      });
+    },
+    cancelBtn() {
+      this.upload = false;
     }
   }
 };

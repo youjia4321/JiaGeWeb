@@ -33,7 +33,11 @@ urlpatterns = [
     path('api/delOfBlog', blog.delete, name='delOfBlog'),
     path('api/centerManage', blog.center_manage, name='centerManage'),
     path('api/uploadAvatar', blog.upload_avatar, name='uploadAvatar'),
+    path('api/blogSave', blog.edit_post_save, name='blogSave'),
+    path('api/allCategory', blog.get_all_category, name='allCategory'),
+    path('api/getChooseCategory', blog.get_choose_cate, name='getChooseCategory'),
     url(r'^api/blog/(\d+)/$', blog.get_one_blog, name='oneBlog'),
+    url(r'^api/edit/(\d+)/$', blog.edit_blog, name='editBlog'),
     url(r'^static/(?P<path>.*)/$', serve, {"document_root": settings.STATIC_ROOT}, name='static'),
     url(r'^media/(?P<path>.*)', serve, {"document_root": settings.MEDIA_ROOT}, name='media'),
 ]
