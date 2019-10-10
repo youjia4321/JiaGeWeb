@@ -7,7 +7,7 @@
             <div class="avatar-box">
               <img
                 class="avatar"
-                :src="'http://192.168.1.65:8000/media/'+perosnInfo.portrait"
+                :src="api+'/media/'+perosnInfo.portrait"
                 width="150"
               />
             </div>
@@ -42,7 +42,7 @@
           :data="data"
           :format="['jpg', 'png', 'jpeg']"
           :on-format-error="handleFormatError2"
-          action="http://192.168.1.65:8000/api/uploadAvatar"
+          :action="api+'/api/uploadAvatar'"
         >
           <div style="padding: 20px 0">
             <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
@@ -69,7 +69,8 @@ export default {
       pwd: "",
       perosnInfo: [],
       file: "",
-      data: ""
+      data: "",
+      api: this.api
     };
   },
   components: {

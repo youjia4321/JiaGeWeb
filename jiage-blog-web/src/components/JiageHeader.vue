@@ -27,7 +27,7 @@
         <MenuItem v-if="auth" name="4" to="/account/register">注册</MenuItem>
         <Dropdown v-else>
           <div class="avatar" style="color: #fff; cursor: pointer">
-            <Avatar :src="'http://192.168.1.65:8000/media/'+backAvatar" size="small" />
+            <Avatar :src="api+'/media/'+backAvatar" size="small" />
             <!-- <Avatar :src="defaultAvatar" size="small" /> -->
             <Icon type="md-arrow-dropdown" />
           </div>
@@ -118,7 +118,8 @@ export default {
       auth: true,
       user: "",
       backAvatar: "",
-      defaultAvatar: defaultAvatar
+      defaultAvatar: defaultAvatar,
+      api: this.api
     };
   },
   created() {

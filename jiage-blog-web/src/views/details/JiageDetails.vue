@@ -24,9 +24,9 @@
           <br />
           <div class="blog-base-info">
             <Poptip trigger="hover" placement="right">
-              <Avatar :src="'http://192.168.1.65:8000/media/'+ dataArr.portrait "></Avatar>
+              <Avatar :src="api+'/media/'+ dataArr.portrait "></Avatar>
               <div class="api" slot="content">
-                <Avatar :src="'http://192.168.1.65:8000/media/'+ dataArr.portrait " />&nbsp;&nbsp;
+                <Avatar :src="api+'/media/'+ dataArr.portrait " />&nbsp;&nbsp;
                 <a class="person-info">访问主页</a>
               </div>
             </Poptip>
@@ -57,7 +57,7 @@
       <div v-if="isComment">
         <div v-for="(item, index) in dataComments" :key="index" class="info-box">
           <span class="info-avatar">
-            <Avatar :src="'http://192.168.1.65:8000/media/'+ item.portrait " size="small"></Avatar>&nbsp;&nbsp;
+            <Avatar :src="api+'/media/'+ item.portrait " size="small"></Avatar>&nbsp;&nbsp;
           </span>
           <span class="info-author">{{item.author}}：</span>
           <span class="info-content">{{item.content}}</span>
@@ -87,7 +87,8 @@ export default {
       dataArr: [],
       dataComments: [],
       auth: true,
-      isComment: true
+      isComment: true,
+      api: this.api
     };
   },
   created() {

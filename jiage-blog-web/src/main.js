@@ -14,6 +14,7 @@ Vue.use(ElementUI);
 Vue.use(iView);
 
 Vue.prototype.$http = $http
+Vue.prototype.api = "http://192.168.1.65:8000"
 Vue.config.productionTip = false
 
 // 全局导航守卫

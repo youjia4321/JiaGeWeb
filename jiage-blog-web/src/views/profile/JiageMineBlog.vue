@@ -25,11 +25,11 @@
               <Poptip trigger="hover" :title="item.author" placement="right">
                 <Avatar
                   class="avatar-img"
-                  :src="'http://192.168.1.65:8000/media/'+ item.portrait"
+                  :src="api+'/media/'+ item.portrait"
                   size="small"
                 />
                 <div class="api" slot="content">
-                  <Avatar :src="'http://192.168.1.65:8000/media/'+ item.portrait" />&nbsp;&nbsp;
+                  <Avatar :src="api+'/media/'+ item.portrait" />&nbsp;&nbsp;
                   <a class="person-info">访问主页</a>
                 </div>
               </Poptip>
@@ -79,7 +79,8 @@ export default {
       author: "",
       dataArr: [],
       modalDel: false,
-      delId: ""
+      delId: "",
+      api: this.api
     };
   },
   created() {
