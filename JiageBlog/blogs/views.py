@@ -205,7 +205,6 @@ def edit_post_save(request):
     blog_id = request.POST.get('id', '')
     title = request.POST.get('title', '')
     content = request.POST.get('content', '')
-    content = request.POST.get('content', '')
     blog_info = BlogInfo.objects.get(id=blog_id)
     blog_info.title = title
     blog_info.content = content
